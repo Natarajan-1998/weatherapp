@@ -1,6 +1,7 @@
 <template>
   <div id = "app" :class="typeof weather.main != 'undefined' && weather.main.temp > 30 ? 'hot' : ''">
     <main>
+      
       <div class="search-box">
         <input 
           type="text" 
@@ -9,6 +10,10 @@
           v-model="query"
           @keypress="fetchWeather"
         />
+      </div>
+      <div class="get-city">
+        <input type = "button" class = "get-city" value="Current location"/>
+        
       </div>
 
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
@@ -86,6 +91,21 @@ main {
   min-height: 100vh;
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
+}
+.get-city {
+  
+  align-content: center;
+  background-color: #85a086;
+  border: none;
+  color: white;
+  padding: 2px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .search-box {
   width: 100%;
