@@ -11,11 +11,16 @@
         />
       </div>
 
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
+      <div class="weather-wrap" >
         <div class="location-box">
           <div class="location">Chennai, India</div>
-          <div class="data">Saturday 28 May 2021</div>
+          <div class="date">Saturday 28 May 2021</div>
         </div>
+        <div class="weather-box">
+          <div class="temp">38°c</div>
+          <div class="weather">Hot</div>
+        </div>
+
       </div>
     </main>
   </div>
@@ -80,5 +85,43 @@ main {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 16px 0px 16px 0px;
+}
+
+.location-box .location{
+  color: white;
+  font-size: 40px;
+  font-weight: 1000;
+  text-align: left;
+  text-shadow: 2px 5px rgba(0, 0, 0, 0.75);
+}
+
+.location-box .date{
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  font-style: italic;
+}
+.weather-box {
+  text-align: center;
+}
+.weather-box .temp {
+  display: inline-block;
+  padding: 10px 25px;
+  color: #FFF;
+  font-size: 102px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  background-color:rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  margin: 30px 0px;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+.weather-box .weather {
+  color: #FFF;
+  font-size: 48px;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 </style>
