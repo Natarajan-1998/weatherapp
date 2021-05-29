@@ -1,5 +1,5 @@
 <template>
-  <div id = "app">
+  <div id = "app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
     <main>
       <div class="search-box">
         <input 
@@ -11,14 +11,14 @@
         />
       </div>
 
-      <div class="weather-wrap" >
+      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
         <div class="location-box">
-          <div class="location">Chennai, India</div>
-          <div class="date">Saturday 28 May 2021</div>
+          <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+          <div class="date">{{ dateBuilder() }}</div>
         </div>
         <div class="weather-box">
-          <div class="temp">38°c</div>
-          <div class="weather">Hot</div>
+          <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
+          <div class="weather">{{ weather.weather[0].main }}</div>
         </div>
 
       </div>
@@ -32,7 +32,8 @@ export default {
   name: 'App',
   data() {
     return{
-      api_key:"2685db14222dfebeb28333f520d1e4e7"
+      api_key:"2685db14222dfebeb28333f520d1e4e7",
+      url_base: 'https://api.openweathermap.org/data/2.5/'
     }
   }
   }
