@@ -1,5 +1,5 @@
 <template>
-  <div id = "app" :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''">
+  <div id = "app" :class="typeof weather.main != 'undefined' && weather.main.temp > 30 ? 'hot' : ''">
     <main>
       <div class="search-box">
         <input 
@@ -79,7 +79,7 @@ body {
   background-position: bottom;
   transition: 0.4s;
 }
-#app.warm {
+#app.hot {
   background-image: url('./assets/warm-bg.jpg');
 }
 main {
