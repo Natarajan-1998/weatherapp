@@ -10,6 +10,13 @@
           @keypress="fetchWeather"
         />
       </div>
+
+      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
+        <div class="location-box">
+          <div class="location">Chennai, India</div>
+          <div class="data">Saturday 28 May 2021</div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
