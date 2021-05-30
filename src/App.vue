@@ -16,8 +16,7 @@
         type = "button"
         class = "get-city"
         value="Current location"
-        
-        
+        @click="fetchLocation"
         />
 
       </div>
@@ -51,6 +50,19 @@ export default {
     }
   },
   methods: {
+    fetchLocation(){
+      navigator.geolocation.getCurrentPosition(successCallback,console.log)
+      const successCallback = (position) => {
+        const { latitude , longitude} = position.coords;
+        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=a67c77ba25364ce7b58e68e4c543c560`)
+        .then(res =>{
+          return res.json();
+        }).then(this.city)
+      };
+    },
+    city (results) {
+      this.query = results.components.county;
+    },
     fetchWeather(e) {
       if (e.key == "Enter"){
         fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
