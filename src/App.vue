@@ -12,8 +12,14 @@
         />
       </div>
       <div class="get-city">
-        <input type = "button" class = "get-city" value="Current location"/>
+        <input
+        type = "button"
+        class = "get-city"
+        value="Current location"
         
+        
+        />
+
       </div>
 
       <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
@@ -32,12 +38,13 @@
 </template>
 
 <script>
+import WEATHER_API_KEY from "./apikeys.js" ;
 
 export default {
   name: 'App',
   data() {
     return{
-      api_key:"2685db14222dfebeb28333f520d1e4e7",
+      api_key: WEATHER_API_KEY ,
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {}
