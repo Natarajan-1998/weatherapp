@@ -18,6 +18,11 @@
         value="Get Current Location"
         @click="fetchLocation"
         >Get Current Location</button>
+        <button
+        type="button"
+        id="go-button"
+        class="location-button"
+        @click="fetchWeather">Go</button>
 
       </div>
 
@@ -70,15 +75,17 @@ export default {
     },   
     
     fetchWeather(e) {
-      if (e.key == "Enter"){
+      if (e.key == "Enter" || e.button == "0"){
         fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
         .then(res => {
             return res.json();
           }).then(this.setResults);
       }
+      
     },
     setResults (results) {
       this.weather = results;
+      this.query = '';
     },
     dateBuilder () {
       let d = new Date();
