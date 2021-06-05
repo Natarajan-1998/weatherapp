@@ -61,11 +61,12 @@ export default {
         .then(res => {
             return res.json();
           }).then(this.setcity)
+          
       }
       navigator.geolocation.getCurrentPosition(successfulLookup,console.log)
     },
     setcity(results){
-        this.query = results.results[0].components.county
+        this.query = results.results[0].components.city || results.results[0].components.village
     },   
     
     fetchWeather(e) {
