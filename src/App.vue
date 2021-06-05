@@ -65,7 +65,7 @@ export default {
       navigator.geolocation.getCurrentPosition(successfulLookup,console.log)
     },
     setcity(results){
-        this.query = results.results[0].components.suburb
+        this.query = results.results[0].components.county
     },   
     
     fetchWeather(e) {
