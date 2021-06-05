@@ -12,12 +12,12 @@
         />
       </div>
       <div class="get-city">
-        <input
-        type = "button"
-        class = "get-city"
-        value="Current location"
+       <button
+        type="button"
+        class="location-button"
+        value="Get Current Location"
         @click="fetchLocation"
-        />
+        >Get Current Location</button>
 
       </div>
 
@@ -46,23 +46,28 @@ export default {
       api_key: WEATHER_API_KEY ,
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
-      weather: {}
+      weather: {},
+      lat:0,
+      lng:0
     }
   },
   methods: {
     fetchLocation(){
-      navigator.geolocation.getCurrentPosition(successCallback,console.log)
-      const successCallback = (position) => {
-        const { latitude , longitude} = position.coords;
+      //this.query = "Chennai"
+      
+      const successfulLookup = (position) => {
+        const { latitude, longitude} = position.coords;
         fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=a67c77ba25364ce7b58e68e4c543c560`)
-        .then(res =>{
-          return res.json();
-        }).then(this.city)
-      };
+        .then(res => {
+            return res.json();
+          }).then(this.setcity)
+      }
+      navigator.geolocation.getCurrentPosition(successfulLookup,console.log)
     },
-    city (results) {
-      this.query = results.components.county;
-    },
+    setcity(results){
+        this.query = results.results[0].components.suburb
+    },   
+    
     fetchWeather(e) {
       if (e.key == "Enter"){
         fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
@@ -111,20 +116,22 @@ main {
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
 }
-.get-city {
+.get-city .location-button{
   
-  align-content: center;
-  background-color: #85a086;
   border: none;
-  color: white;
-  padding: 2px 2px;
+  color: rgb(78, 64, 64);
+  padding: 16px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  cursor: pointer;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  transition-duration: 0.4s;
+  cursor: pointer
+}
+.location-button:hover {
+  background-color: #4CAF50;
+  color: white;
 }
 .search-box {
   width: 100%;
