@@ -33,7 +33,8 @@
         </div>
         <div class="weather-box">
           <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
+          <div class="weather">{{ weather.weather[0].description }}</div>
+          <div class="feels-like">Feels Like : {{ Math.round(weather.main.feels_like)}}°c</div>
         </div>
 
       </div>
@@ -42,7 +43,6 @@
 </template>
 
 <script>
-
 
 export default {
   name: 'App',
@@ -202,6 +202,14 @@ main {
   font-size: 48px;
   font-weight: 700;
   font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+.weather-box .feels-like {
+  padding: 10px 25px;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: initial;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 </style>
