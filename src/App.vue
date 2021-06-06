@@ -48,7 +48,7 @@ export default {
   name: 'App',
   data() {
     return{
-      api_key:   document.getElementById("weather-api-key").value,
+      
       url_base: 'https://api.openweathermap.org/data/2.5/',
       query: '',
       weather: {},
@@ -77,7 +77,7 @@ export default {
     fetchWeather(e) {
       if (e.key == "Enter" || e.button == "0"){
         console.log("hahahahahaha , ",document.getElementById("weather-api-key").value);
-        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.document.getElementById("weather-api-key").value}`)
         .then(res => {
             return res.json();
           }).then(this.setResults);
