@@ -76,8 +76,9 @@ export default {
     
     fetchWeather(e) {
       if (e.key == "Enter" || e.button == "0"){
-        console.log("hahahahahaha , ",document.getElementById("weather-api-key").value);
-        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.document.getElementById("weather-api-key").value}`)
+        const key = document.getElementById("weather-api-key").value;
+        console.log("hahahahahaha , ",key);
+        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${key}`)
         .then(res => {
             return res.json();
           }).then(this.setResults);
