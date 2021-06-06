@@ -5,7 +5,8 @@
       <div class="search-box">
         <input 
           type="text" 
-          class="search-bar" 
+          class="search-bar"
+          id="autocomplete" 
           placeholder="Enter City ..."
           v-model="query"
           @keypress="fetchWeather"
@@ -56,6 +57,11 @@ export default {
       lng:0
     }
   },
+  mounted(){
+    new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete")
+    )
+  },
   methods: {
     fetchLocation(){
       //this.query = "Chennai"
@@ -71,7 +77,8 @@ export default {
       navigator.geolocation.getCurrentPosition(successfulLookup,console.log)
     },
     setcity(results){
-        this.query = results.results[0].components.city || results.results[0].components.village
+        this.query = results.results[0].components.city || results.results[0].components.village||results.results[0].components.suburb;
+        this.fetchWeather(0);
     },   
     
     fetchWeather(e) {
